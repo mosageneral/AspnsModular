@@ -1,0 +1,16 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Module.Archive.DL.Entities.ArchiveEntities
+{
+    internal class ArchiveRoom:BaseDomain
+    {
+        public string RoomNameAr { get; set; }
+        public string RoomNameEn { get; set; }
+        public Guid ArchiveFloorId { get; set; }
+        public ArchiveFloor ArchiveFloor { get; set; }
+    }
+}
