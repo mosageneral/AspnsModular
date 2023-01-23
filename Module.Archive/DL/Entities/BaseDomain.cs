@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Module.Archive.DL.Entities
+namespace Module.Product.DL.Entities
 {
     internal class BaseDomain
     {

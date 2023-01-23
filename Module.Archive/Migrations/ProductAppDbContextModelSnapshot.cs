@@ -4,168 +4,26 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Module.Archive.DL.appDBContext;
+using Module.Product.DL.appDBContext;
 
-namespace Module.Archive.Migrations
+namespace Module.Product.Migrations
 {
-    [DbContext(typeof(ArchiveAppDbContext))]
-    partial class ArchiveAppDbContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(ProductAppDbContext))]
+    partial class ProductAppDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasDefaultSchema("Archive")
+                .HasDefaultSchema("Product")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.7")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Module.Archive.DL.Entities.ArchiveEntities.ArchiveBuilding", b =>
+            modelBuilder.Entity("Module.Product.DL.Entities.ProductEntities.Category", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("BuildingNameAr")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("BuildingNameEn")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid>("CreatedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("DescribtionAr")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("DescribtionEn")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime>("UpadtedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid>("UpdatedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ArchiveBuildings");
-                });
-
-            modelBuilder.Entity("Module.Archive.DL.Entities.ArchiveEntities.ArchiveCell", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("ArcivecupboardId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("CellNameAr")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CellNameEn")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid>("CreatedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("DescribtionAr")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("DescribtionEn")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime>("UpadtedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid>("UpdatedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ArcivecupboardId");
-
-                    b.ToTable("ArchiveCells");
-                });
-
-            modelBuilder.Entity("Module.Archive.DL.Entities.ArchiveEntities.ArchiveFloor", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("ArchiveBuildingId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid>("CreatedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("DescribtionAr")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("DescribtionEn")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FloorNameAr")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FloorNameEn")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime>("UpadtedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid>("UpdatedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ArchiveBuildingId");
-
-                    b.ToTable("ArchiveFloors");
-                });
-
-            modelBuilder.Entity("Module.Archive.DL.Entities.ArchiveEntities.ArchiveRoom", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("ArchiveFloorId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CreatedAt")
@@ -186,11 +44,11 @@ namespace Module.Archive.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<string>("RoomNameAr")
+                    b.Property<string>("NameAr")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("RoomNameEn")
+                    b.Property<string>("NameEn")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -202,18 +60,13 @@ namespace Module.Archive.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ArchiveFloorId");
-
-                    b.ToTable("ArchiveRooms");
+                    b.ToTable("Categories");
                 });
 
-            modelBuilder.Entity("Module.Archive.DL.Entities.ArchiveEntities.Arcivecupboard", b =>
+            modelBuilder.Entity("Module.Product.DL.Entities.ProductEntities.Make", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("ArchiveRoomId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CreatedAt")
@@ -234,61 +87,13 @@ namespace Module.Archive.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<DateTime>("UpadtedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid>("UpdatedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("cupboardNameAr")
+                    b.Property<string>("NameAr")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("cupboardNameEn")
+                    b.Property<string>("NameEn")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ArchiveRoomId");
-
-                    b.ToTable("Arcivecupboards");
-                });
-
-            modelBuilder.Entity("Module.Archive.DL.Entities.ArchiveEntities.File", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("ArchiveCellId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid>("CreatedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("DescribtionAr")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("DescribtionEn")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FileName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FilePath")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
 
                     b.Property<DateTime>("UpadtedAt")
                         .HasColumnType("datetime2");
@@ -296,17 +101,12 @@ namespace Module.Archive.Migrations
                     b.Property<Guid>("UpdatedBy")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("ArchiveCellId");
-
-                    b.ToTable("Files");
+                    b.ToTable("Makes");
                 });
 
-            modelBuilder.Entity("Module.Archive.DL.Entities.ArchiveEntities.FileTransactionHistory", b =>
+            modelBuilder.Entity("Module.Product.DL.Entities.ProductEntities.Model", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -324,20 +124,20 @@ namespace Module.Archive.Migrations
                     b.Property<string>("DescribtionEn")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("FileId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<string>("TransactionAr")
+                    b.Property<Guid>("MakeId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("NameAr")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("TransactionEn")
+                    b.Property<string>("NameEn")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -347,67 +147,234 @@ namespace Module.Archive.Migrations
                     b.Property<Guid>("UpdatedBy")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("UserId")
+                    b.HasKey("Id");
+
+                    b.HasIndex("MakeId");
+
+                    b.ToTable("Models");
+                });
+
+            modelBuilder.Entity("Module.Product.DL.Entities.ProductEntities.Product", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("ASPNSEarn")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("BuyPriceRetail")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("BuyPricewhole")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("DescribtionAr")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DescribtionEn")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Image")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<Guid>("ModelId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("NameAr")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NameEn")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PartNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("QTY")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("SellPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<Guid>("SubCategoryId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("UpadtedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("UpdatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("VendorId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
-                    b.ToTable("FileTransactionHistories");
+                    b.HasIndex("ModelId");
+
+                    b.HasIndex("SubCategoryId");
+
+                    b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("Module.Archive.DL.Entities.ArchiveEntities.ArchiveCell", b =>
+            modelBuilder.Entity("Module.Product.DL.Entities.ProductEntities.SubCategory", b =>
                 {
-                    b.HasOne("Module.Archive.DL.Entities.ArchiveEntities.Arcivecupboard", "Arcivecupboard")
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("CategoryId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("DescribtionAr")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DescribtionEn")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("NameAr")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NameEn")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpadtedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("UpdatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("SubCategories");
+                });
+
+            modelBuilder.Entity("Module.Product.DL.Entities.ProductEntities.Year", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("DescribtionAr")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DescribtionEn")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<Guid>("ModelId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpadtedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("UpdatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ModelId");
+
+                    b.ToTable("Years");
+                });
+
+            modelBuilder.Entity("Module.Product.DL.Entities.ProductEntities.Model", b =>
+                {
+                    b.HasOne("Module.Product.DL.Entities.ProductEntities.Make", "Make")
                         .WithMany()
-                        .HasForeignKey("ArcivecupboardId")
+                        .HasForeignKey("MakeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Arcivecupboard");
+                    b.Navigation("Make");
                 });
 
-            modelBuilder.Entity("Module.Archive.DL.Entities.ArchiveEntities.ArchiveFloor", b =>
+            modelBuilder.Entity("Module.Product.DL.Entities.ProductEntities.Product", b =>
                 {
-                    b.HasOne("Module.Archive.DL.Entities.ArchiveEntities.ArchiveBuilding", "ArchiveBuilding")
+                    b.HasOne("Module.Product.DL.Entities.ProductEntities.Model", "Model")
                         .WithMany()
-                        .HasForeignKey("ArchiveBuildingId")
+                        .HasForeignKey("ModelId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("ArchiveBuilding");
-                });
-
-            modelBuilder.Entity("Module.Archive.DL.Entities.ArchiveEntities.ArchiveRoom", b =>
-                {
-                    b.HasOne("Module.Archive.DL.Entities.ArchiveEntities.ArchiveFloor", "ArchiveFloor")
+                    b.HasOne("Module.Product.DL.Entities.ProductEntities.SubCategory", "SubCategory")
                         .WithMany()
-                        .HasForeignKey("ArchiveFloorId")
+                        .HasForeignKey("SubCategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("ArchiveFloor");
+                    b.Navigation("Model");
+
+                    b.Navigation("SubCategory");
                 });
 
-            modelBuilder.Entity("Module.Archive.DL.Entities.ArchiveEntities.Arcivecupboard", b =>
+            modelBuilder.Entity("Module.Product.DL.Entities.ProductEntities.SubCategory", b =>
                 {
-                    b.HasOne("Module.Archive.DL.Entities.ArchiveEntities.ArchiveRoom", "ArchiveRoom")
+                    b.HasOne("Module.Product.DL.Entities.ProductEntities.Category", "Category")
                         .WithMany()
-                        .HasForeignKey("ArchiveRoomId")
+                        .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("ArchiveRoom");
+                    b.Navigation("Category");
                 });
 
-            modelBuilder.Entity("Module.Archive.DL.Entities.ArchiveEntities.File", b =>
+            modelBuilder.Entity("Module.Product.DL.Entities.ProductEntities.Year", b =>
                 {
-                    b.HasOne("Module.Archive.DL.Entities.ArchiveEntities.ArchiveCell", "ArchiveCell")
+                    b.HasOne("Module.Product.DL.Entities.ProductEntities.Model", "Model")
                         .WithMany()
-                        .HasForeignKey("ArchiveCellId")
+                        .HasForeignKey("ModelId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("ArchiveCell");
+                    b.Navigation("Model");
                 });
 #pragma warning restore 612, 618
         }

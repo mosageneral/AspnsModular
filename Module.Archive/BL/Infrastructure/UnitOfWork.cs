@@ -1,34 +1,34 @@
 ﻿
+
+
+
 using BL.Repositories;
-using Module.Archive.BL.Abstraction;
-using Module.Archive.DL.appDBContext;
+using Module.Product.DL.appDBContext;
 
 namespace BL.Infrastructure
 {
     internal class UnitOfWork : IUnitOfWork
     {
-        private ArchiveAppDbContext _ctx;
-        public UnitOfWork(ArchiveAppDbContext ctx)
+        private ProductAppDbContext _ctx;
+        public UnitOfWork(ProductAppDbContext ctx)
         {
             _ctx = ctx;
             _ctx.ChangeTracker.LazyLoadingEnabled = true;
         }
 
-        public ArchiveBuildingRepository ArchiveBuildingRepository =>  new ArchiveBuildingRepository(_ctx);
+    
 
-        public ArchiveFloorRepository ArchiveFloorRepository => new ArchiveFloorRepository(_ctx);
+        public ProductRepository ProductRepository => new ProductRepository(_ctx);
 
-        public ArchiveRoomRepository ArchiveRoomRepository => new ArchiveRoomRepository(_ctx);
+        public CategoryRepository CategoryRepository => new CategoryRepository(_ctx);
 
-        public ArchivecupboardRepository ArchivecupboardRepository => new ArchivecupboardRepository(_ctx);
+        public SubCategoryRepository SubCategoryRepository => new SubCategoryRepository(_ctx);
 
-        public ArchiveCellRepository ArchiveCellRepository => new ArchiveCellRepository(_ctx);
-        public FileRepository FileRepository => new FileRepository(_ctx);
-        public FileTransactionHistoryRepository FileTransactionHistoryRepository => new FileTransactionHistoryRepository(_ctx);
+        public MakeRepository MakeRepository => new MakeRepository(_ctx);
 
+        public ModelRepository ModelRepository => new ModelRepository(_ctx);
 
-
-
+        public YearRepository YearRepository => throw new NotImplementedException();
 
         public void Dispose()
         {

@@ -23,6 +23,10 @@ namespace Module.Account.DL.appDBContext
         public DbSet<Permission> Permissions { get; set; }
         public DbSet<UserRoles> UserRoles { get; set; }
         public DbSet<PermissionRoles> PermissionRoles { get; set; }
+        public DbSet<City> Cities { get; set; }
+        public DbSet<Country> Countries { get; set; }
+        public DbSet<Region> Regions { get; set; }
+        public DbSet<Vendor> Vendors { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

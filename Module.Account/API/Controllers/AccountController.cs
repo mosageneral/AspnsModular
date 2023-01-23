@@ -1,4 +1,5 @@
-﻿using BL.Infrastructure;
+﻿using AutoMapper;
+using BL.Infrastructure;
 using BL.Security;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
@@ -27,11 +28,13 @@ namespace Module.Account.Controllers
     {
         private readonly IUnitOfWork unitOfWork;
         private readonly IAuthenticateService authenticateService;
+        private readonly IMapper mapper;
 
-        public AccountController(IUnitOfWork unitOfWork,IAuthenticateService authenticateService)
+        public AccountController(IUnitOfWork unitOfWork,IAuthenticateService authenticateService, IMapper Mapper)
         {
             this.unitOfWork = unitOfWork;
             this.authenticateService = authenticateService;
+            mapper = Mapper;
         }
         [HttpGet,Route("GetAllUsers")]
         public async Task<IActionResult> GetAllUsers()
@@ -50,8 +53,9 @@ namespace Module.Account.Controllers
             return Ok(unitOfWork.PermissionRepository.GetAll());
         }
         [HttpPost,Route("AddUser")]
-        public IActionResult AddUser (User user)
+        public IActionResult AddUser (AddUserDTO userdto)
         {
+            var user = this.mapper.Map<User>(userdto);
             user.Password = EncryptANDDecrypt.EncryptText(user.Password);
             user.IsActive = true;
             unitOfWork.UserRepository.Add(user);
@@ -59,14 +63,7 @@ namespace Module.Account.Controllers
           
             return Ok(user);
         }
-        //[HttpPost, Route("AddUser")]
-        //public async Task<IActionResult> AddUser(User user)
-        //{
-        //   user.Password = EncryptANDDecrypt.EncryptText(user.Password);
-        //    unitOfWork.UserRepository.Add(user);
-        //    unitOfWork.Save();
-        //    return Ok(user);
-        //}
+       
         [HttpGet,Route("GetAllRolesWithPermissions")]
         public async Task<IActionResult> GetAllRolesWithPermissions()
         {

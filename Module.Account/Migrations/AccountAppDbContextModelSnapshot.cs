@@ -20,6 +20,97 @@ namespace Module.Account.Migrations
                 .HasAnnotation("ProductVersion", "5.0.7")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("Module.Account.DL.Entities.UserEntites.City", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("DescribtionAr")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DescribtionEn")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("NameAr")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NameEn")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("RegionId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("UpadtedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("UpdatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RegionId");
+
+                    b.ToTable("Cities");
+                });
+
+            modelBuilder.Entity("Module.Account.DL.Entities.UserEntites.Country", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("DescribtionAr")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DescribtionEn")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("NameAr")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NameEn")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpadtedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("UpdatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Countries");
+                });
+
             modelBuilder.Entity("Module.Account.DL.Entities.UserEntites.Permission", b =>
                 {
                     b.Property<Guid>("Id")
@@ -65,7 +156,7 @@ namespace Module.Account.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("7ba58fa6-4183-444e-9ebb-0c9f19940b31"),
+                            Id = new Guid("2e3d6722-6feb-4c6c-9580-62ef0c204d0c"),
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             IsActive = false,
@@ -77,7 +168,7 @@ namespace Module.Account.Migrations
                         },
                         new
                         {
-                            Id = new Guid("6469c7b7-e2dd-4ef4-9527-ee6d6e7d1f76"),
+                            Id = new Guid("efc633f6-c345-4f0b-913b-1267ef5ca566"),
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             IsActive = false,
@@ -132,40 +223,88 @@ namespace Module.Account.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("48a91ecf-bfa7-4694-832c-62b162b3beef"),
+                            Id = new Guid("53da8352-c9dc-4bea-be3a-271260ece393"),
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             IsActive = false,
                             IsDeleted = false,
-                            PermissionId = new Guid("7ba58fa6-4183-444e-9ebb-0c9f19940b31"),
-                            RoleId = new Guid("abac5a11-a025-466a-b34d-984c94e57cbb"),
+                            PermissionId = new Guid("2e3d6722-6feb-4c6c-9580-62ef0c204d0c"),
+                            RoleId = new Guid("2abb0db3-7487-4b31-8743-244eb495dac0"),
                             UpadtedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UpdatedBy = new Guid("00000000-0000-0000-0000-000000000000")
                         },
                         new
                         {
-                            Id = new Guid("d6d97400-c6a9-43e1-861c-132e284aa6cb"),
+                            Id = new Guid("47fdeb07-8026-48d5-a253-2de2980913b2"),
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             IsActive = false,
                             IsDeleted = false,
-                            PermissionId = new Guid("7ba58fa6-4183-444e-9ebb-0c9f19940b31"),
-                            RoleId = new Guid("d1720251-208b-440d-9661-ec03daa1c9c1"),
+                            PermissionId = new Guid("2e3d6722-6feb-4c6c-9580-62ef0c204d0c"),
+                            RoleId = new Guid("5d082e58-e265-44a7-afeb-d9d2ba69be5c"),
                             UpadtedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UpdatedBy = new Guid("00000000-0000-0000-0000-000000000000")
                         },
                         new
                         {
-                            Id = new Guid("5d5a8edc-d738-4df7-b25c-c2a8def394f8"),
+                            Id = new Guid("4429b7d1-e8c4-4471-8dc1-e3a179495582"),
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             IsActive = false,
                             IsDeleted = false,
-                            PermissionId = new Guid("6469c7b7-e2dd-4ef4-9527-ee6d6e7d1f76"),
-                            RoleId = new Guid("d1720251-208b-440d-9661-ec03daa1c9c1"),
+                            PermissionId = new Guid("efc633f6-c345-4f0b-913b-1267ef5ca566"),
+                            RoleId = new Guid("5d082e58-e265-44a7-afeb-d9d2ba69be5c"),
                             UpadtedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UpdatedBy = new Guid("00000000-0000-0000-0000-000000000000")
                         });
+                });
+
+            modelBuilder.Entity("Module.Account.DL.Entities.UserEntites.Region", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("CountryId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("DescribtionAr")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DescribtionEn")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("NameAr")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NameEn")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpadtedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("UpdatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CountryId");
+
+                    b.ToTable("Regions");
                 });
 
             modelBuilder.Entity("Module.Account.DL.Entities.UserEntites.Role", b =>
@@ -213,7 +352,7 @@ namespace Module.Account.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("d1720251-208b-440d-9661-ec03daa1c9c1"),
+                            Id = new Guid("5d082e58-e265-44a7-afeb-d9d2ba69be5c"),
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             IsActive = false,
@@ -225,7 +364,7 @@ namespace Module.Account.Migrations
                         },
                         new
                         {
-                            Id = new Guid("abac5a11-a025-466a-b34d-984c94e57cbb"),
+                            Id = new Guid("2abb0db3-7487-4b31-8743-244eb495dac0"),
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             IsActive = false,
@@ -243,6 +382,9 @@ namespace Module.Account.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid?>("CityId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
@@ -255,6 +397,10 @@ namespace Module.Account.Migrations
                     b.Property<string>("DescribtionEn")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
@@ -262,6 +408,10 @@ namespace Module.Account.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Phone")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -275,34 +425,51 @@ namespace Module.Account.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("UserType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("VendorId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("CityId");
+
+                    b.HasIndex("VendorId");
 
                     b.ToTable("Users");
 
                     b.HasData(
                         new
                         {
-                            Id = new Guid("788e8531-5281-4449-b9a8-e792772e27a0"),
+                            Id = new Guid("56dbf710-dac2-47df-9a35-6b341baceee1"),
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Email = "Admin@Admon.com",
                             IsActive = false,
                             IsDeleted = false,
                             Password = "Zmz85diIPmR3ygkO9kNUwQ==",
+                            Phone = "123",
                             UpadtedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UpdatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
-                            UserName = "Admin"
+                            UserName = "Admin",
+                            UserType = "Admin"
                         },
                         new
                         {
-                            Id = new Guid("251efc41-31af-4919-90f2-d24f6b394b4e"),
+                            Id = new Guid("30a75876-75c9-400f-a78c-5d234b167026"),
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
+                            Email = "Basic@Basic.com",
                             IsActive = false,
                             IsDeleted = false,
                             Password = "lUB3OZqa9U9DS8HKkO0x5A==",
+                            Phone = "123",
                             UpadtedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UpdatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
-                            UserName = "Basic"
+                            UserName = "Basic",
+                            UserType = "Buyer"
                         });
                 });
 
@@ -349,40 +516,120 @@ namespace Module.Account.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("b9c32926-d808-4c36-a97d-e05a1f544662"),
+                            Id = new Guid("d7366e68-08a6-48cc-b748-09c6c963b988"),
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             IsActive = false,
                             IsDeleted = false,
-                            RoleId = new Guid("abac5a11-a025-466a-b34d-984c94e57cbb"),
+                            RoleId = new Guid("2abb0db3-7487-4b31-8743-244eb495dac0"),
                             UpadtedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UpdatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
-                            UserId = new Guid("251efc41-31af-4919-90f2-d24f6b394b4e")
+                            UserId = new Guid("30a75876-75c9-400f-a78c-5d234b167026")
                         },
                         new
                         {
-                            Id = new Guid("2699e9e8-c184-44b9-b048-7e43cf2c63c1"),
+                            Id = new Guid("ee145ad2-03b6-4b44-a547-720cd1e12aaf"),
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             IsActive = false,
                             IsDeleted = false,
-                            RoleId = new Guid("abac5a11-a025-466a-b34d-984c94e57cbb"),
+                            RoleId = new Guid("2abb0db3-7487-4b31-8743-244eb495dac0"),
                             UpadtedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UpdatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
-                            UserId = new Guid("788e8531-5281-4449-b9a8-e792772e27a0")
+                            UserId = new Guid("56dbf710-dac2-47df-9a35-6b341baceee1")
                         },
                         new
                         {
-                            Id = new Guid("c34aed22-8cd3-4aed-a511-e94a2d45e48b"),
+                            Id = new Guid("8a50b45b-c894-4753-8516-5a23b960499d"),
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             IsActive = false,
                             IsDeleted = false,
-                            RoleId = new Guid("d1720251-208b-440d-9661-ec03daa1c9c1"),
+                            RoleId = new Guid("5d082e58-e265-44a7-afeb-d9d2ba69be5c"),
                             UpadtedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UpdatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
-                            UserId = new Guid("788e8531-5281-4449-b9a8-e792772e27a0")
+                            UserId = new Guid("56dbf710-dac2-47df-9a35-6b341baceee1")
                         });
+                });
+
+            modelBuilder.Entity("Module.Account.DL.Entities.UserEntites.Vendor", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("DescribtionAr")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DescribtionEn")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("UpadtedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("UpdatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("VendorType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Vendors");
+                });
+
+            modelBuilder.Entity("Module.Account.DL.Entities.UserEntites.City", b =>
+                {
+                    b.HasOne("Module.Account.DL.Entities.UserEntites.Region", "Region")
+                        .WithMany()
+                        .HasForeignKey("RegionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Region");
+                });
+
+            modelBuilder.Entity("Module.Account.DL.Entities.UserEntites.Region", b =>
+                {
+                    b.HasOne("Module.Account.DL.Entities.UserEntites.Country", "Country")
+                        .WithMany()
+                        .HasForeignKey("CountryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Country");
+                });
+
+            modelBuilder.Entity("Module.Account.DL.Entities.UserEntites.User", b =>
+                {
+                    b.HasOne("Module.Account.DL.Entities.UserEntites.City", "City")
+                        .WithMany()
+                        .HasForeignKey("CityId");
+
+                    b.HasOne("Module.Account.DL.Entities.UserEntites.Vendor", "Vendor")
+                        .WithMany()
+                        .HasForeignKey("VendorId");
+
+                    b.Navigation("City");
+
+                    b.Navigation("Vendor");
                 });
 #pragma warning restore 612, 618
         }

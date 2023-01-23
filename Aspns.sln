@@ -26,9 +26,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Account", "Account", "{1F86
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Module.Account", "Module.Account\Module.Account.csproj", "{A5A9AD26-1D03-4724-827A-DB9748367852}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Archive", "Archive", "{7251610D-2868-4CF5-94EC-591457B315F1}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Product", "Product", "{7251610D-2868-4CF5-94EC-591457B315F1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Module.Archive", "Module.Archive\Module.Archive.csproj", "{6458A495-B41F-45D4-935D-E3E304FF1BE3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Module.Product", "Module.Archive\Module.Product.csproj", "{6458A495-B41F-45D4-935D-E3E304FF1BE3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

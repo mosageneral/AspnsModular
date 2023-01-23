@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Module.Archive.BL.Helper
+namespace Module.Product.BL.Helper
 {
     public interface IFileHelper
     {

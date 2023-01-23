@@ -14,5 +14,7 @@ namespace Shared.Models.Constant
         public const string Admin = "Admin";
         public const string Archive = "Archive";
 
+        public const string VendorPermission ="VendorPermission";
+        public const string BuyerPermission = "BuyerPermission";
     }
 }

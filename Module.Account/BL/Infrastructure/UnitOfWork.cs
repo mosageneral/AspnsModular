@@ -18,7 +18,11 @@ namespace BL.Infrastructure
         public UserRolesRepository UserRolesRepository => new UserRolesRepository(_ctx);
         public PermissionRoleRepository PermissionRoleRepository => new PermissionRoleRepository(_ctx);
         public PermissionRepository PermissionRepository => new PermissionRepository(_ctx);
-      
+        public CountryRepository CountryRepository => new CountryRepository(_ctx);
+        public CityRepository CityRepository => new CityRepository(_ctx);
+        public RegionRepository RegionRepository => new RegionRepository(_ctx);
+        public VendorRepository VendorRepository => new VendorRepository(_ctx);
+
 
         public void Dispose()
         {

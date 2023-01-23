@@ -20,7 +20,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Module.Account\Module.Account.csproj" />
-    <ProjectReference Include="..\Module.Archive\Module.Archive.csproj" />
+    <ProjectReference Include="..\Module.Archive\Module.Product.csproj" />
     <ProjectReference Include="..\Shared.Infrastructure\Shared.Infrastructure.csproj" />
   </ItemGroup>
 

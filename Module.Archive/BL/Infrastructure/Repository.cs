@@ -3,18 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
-
-using Module.Archive.BL.Abstraction;
-using Module.Archive.DL.appDBContext;
+using Module.Product.DL.appDBContext;
 
 namespace BL.Infrastructure
 {
     internal abstract class Repository<T> : IRepository<T> where T : class
     {
-        private ArchiveAppDbContext _ctx;
+        private ProductAppDbContext _ctx;
         private DbSet<T> _set;
 
-        public Repository(ArchiveAppDbContext ctx)
+        public Repository(ProductAppDbContext ctx)
         {
             _ctx = ctx;
             _set = _ctx.Set<T>();

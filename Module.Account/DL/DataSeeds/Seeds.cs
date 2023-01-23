@@ -11,20 +11,25 @@ namespace Module.Account.DL.DataSeeds
 {
     internal static class UserSeeds
     {
-        public static User AdminUser = new User { Id = Guid.NewGuid(), UserName = "Admin", Password = EncryptANDDecrypt.EncryptText("Admin") };
-        public static User BasicUSer = new User { Id = Guid.NewGuid(), UserName = "Basic", Password = EncryptANDDecrypt.EncryptText("Basic") };
+        public static User AdminUser = new User { Id = Guid.NewGuid(), UserName = "Admin", Email = "Admin@Admon.com",UserType=UserTypeConstant.Admin, Phone="123",Password = EncryptANDDecrypt.EncryptText("Admin") };
+        public static User BasicUSer = new User { Id = Guid.NewGuid(), UserName = "Basic", Email = "Basic@Basic.com", UserType = UserTypeConstant.Buyer, Phone = "123", Password = EncryptANDDecrypt.EncryptText("Basic") };
     }
 
     internal static class RoleSeeds
     {
         public static Role AdminRole = new Role { Id = Guid.NewGuid(), NameAr = "صلاحية المدير", NameEn = "AdminRole" };
         public static Role BasicRole = new Role { Id = Guid.NewGuid(), NameAr = "صلاحية مستخدم", NameEn = "BasicRole" };
+        public static Role VendorRole = new Role { Id = Guid.NewGuid(), NameAr = " بائع", NameEn = "VendorRole" };
+        public static Role BuyerRole = new Role { Id = Guid.NewGuid(), NameAr = " مشتري", NameEn = "BuyerRole" };
     }
+
     internal static class PermissionSeeds
     {
-      
+
         public static Permission Archive = new Permission { Id = Guid.NewGuid(), NameAr = "صلاحية استخدام الارشيف", NameEn = PermissionsConst.Archive };
         public static Permission Admin = new Permission { Id = Guid.NewGuid(), NameAr = "صلاحية المدير", NameEn = PermissionsConst.Admin };
+        public static Permission VendorPermission  = new Permission { Id = Guid.NewGuid(), NameAr = "صلاحية البائع", NameEn = PermissionsConst.VendorPermission };
+        public static Permission BuyerPermission = new Permission { Id = Guid.NewGuid(), NameAr = "صلاحية المشتري", NameEn = PermissionsConst.BuyerPermission };
     }
     internal static class UserRolesSeeds
     {

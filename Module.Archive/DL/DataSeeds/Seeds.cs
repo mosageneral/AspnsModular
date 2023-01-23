@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Module.Archive.DL.DataSeeds
+namespace Module.Product.DL.DataSeeds
 {
     //internal static class UserSeeds
     //{
