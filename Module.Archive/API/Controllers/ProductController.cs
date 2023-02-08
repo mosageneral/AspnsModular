@@ -3,6 +3,7 @@ using BL.Infrastructure;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Module.Product.DL.DTO.productDto;
 using Module.Product.DL.Entities.ProductEntities;
 using Shared.Infrastructure.Extensions;
 using Shared.Models.Constant;
@@ -20,7 +21,7 @@ namespace Module.Archive.Controllers
 {
     [ApiController]
     [EnableCors("MyPolicy")]
-    [Route("/api/Archive/[controller]")]
+    [Route("/api/Product/[controller]")]
   //  [ClaimRequirement(ClaimTypes.Role, PermissionsConst.Archive)]
     internal class ProductController : ControllerBase
     {
@@ -45,11 +46,13 @@ namespace Module.Archive.Controllers
 
         }
         [HttpPost, Route("AddSubCategory")]
-        public IActionResult AddSubCategory(SubCategory Subcategory)
+        public IActionResult AddSubCategory(SubCategoryDto Subcategory)
         {
-            unitOfWork.SubCategoryRepository.Add(Subcategory);
+            var sub = Mapper.Map<Product.DL.Entities.ProductEntities.SubCategory>(Subcategory);
+
+            unitOfWork.SubCategoryRepository.Add(sub);
             unitOfWork.Save();
-            return Ok(Subcategory);
+            return Ok(sub);
 
         }
         [HttpGet,Route("GetAllSubcategoryByCategoryId")]
@@ -72,9 +75,10 @@ namespace Module.Archive.Controllers
             return Ok(make);
         }
         [HttpPost, Route("AddModel")]
-        public IActionResult AddModel(Model Model)
+        public IActionResult AddModel(ModelDTO Model)
         {
-            unitOfWork.ModelRepository.Add(Model);
+            var model = Mapper.Map<Product.DL.Entities.ProductEntities.Model>(Model);
+            unitOfWork.ModelRepository.Add(model);
             unitOfWork.Save();
             return Ok(Model);
         }

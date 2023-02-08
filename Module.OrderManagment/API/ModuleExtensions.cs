@@ -5,23 +5,22 @@ using BL.Infrastructure;
 using DL.Mapping;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Module.Product.BL.Abstraction;
-using Module.Product.DL.appDBContext;
-using Module.Product.Services;
+using Module.OrderManagment.BL.Abstraction;
+using Module.OrderManagment.DL.appDBContext;
 using Shared.Infrastructure.Extensions;
 using Shared.Models.Interfaces;
 
-namespace Module.Product.API
+namespace Module.OrderManagment.API
 {
     public static class ModuleExtensions
     {
-        public static IServiceCollection AddProductModule(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddOrderManagmentModule(this IServiceCollection services, IConfiguration configuration)
         {
             services
-                .AddDatabaseContext<ProductAppDbContext>(configuration)
-                .AddScoped<IProductAppDbContext>(provider => provider.GetService<ProductAppDbContext>());
+                .AddDatabaseContext<OrderManagmentAppDbContext>(configuration)
+                .AddScoped<IOrderManagmentAppDbContext>(provider => provider.GetService<OrderManagmentAppDbContext>());
             services.AddTransient<IUnitOfWork, UnitOfWork>();
-            services.AddTransient<IGetProductById, GetProductById>();
+         
             var mapperConfig = new MapperConfiguration(mc =>
             {
                 mc.AddProfile(new MappingConfigration());

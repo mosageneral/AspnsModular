@@ -20,6 +20,8 @@ namespace DL.Mapping
         {
             // Add as many of these lines as you need to map your objects
             CreateMap<Product, AddProductDto>(MemberList.Source).ReverseMap();
+            CreateMap<Model, ModelDTO>(MemberList.Source).ReverseMap();
+            CreateMap<SubCategory, SubCategoryDto>(MemberList.Source).ReverseMap();
 
         }
     }
