@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-
-
 using Module.OrderManagment.BL.Abstraction;
+using Module.OrderManagment.DL.Entities.OrderManagmentEntities;
 using Shared.Infrastructure.Persistence;
 using System;
 using System.Collections.Generic;
@@ -16,14 +15,15 @@ namespace Module.OrderManagment.DL.appDBContext
     {
         protected override string Schema => "OrderManagment";
 
-       
 
-        public OrderManagmentAppDbContext(DbContextOptions options) : base(options)
+
+        public OrderManagmentAppDbContext(DbContextOptions<OrderManagmentAppDbContext> options) : base(options)
         {
         }
 
-       // public DbSet<Product.DL.Entities.ProductEntities.Product> Products { get; set; }
-    
+
+        public DbSet<Order> Orders { get; set; }
+
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

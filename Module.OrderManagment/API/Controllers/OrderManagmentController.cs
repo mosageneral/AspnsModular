@@ -3,6 +3,7 @@ using BL.Infrastructure;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Module.OrderManagment.DL.DTO.OrderManagmentDto;
 using Module.OrderManagment.DL.Entities.OrderManagmentEntities;
 using Shared.Infrastructure.Extensions;
@@ -163,10 +164,13 @@ namespace Module.OrderManagment.Controllers
            List<OrderItem> OrderItems = new List<OrderItem>();
             foreach (var item in orderDTo.ProductsIds)
             {
-              var product =  getProductById.GetProductById(item);
+                var product =  getProductById.GetProductById(item);
+
+                var name = product.GetType().GetProperty("NameAr").GetValue(product, null);
             }
             return Ok(orderDTo);
         }
+       
         #endregion
     }
 }

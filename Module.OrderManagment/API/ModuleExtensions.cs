@@ -21,15 +21,15 @@ namespace Module.OrderManagment.API
                 .AddScoped<IOrderManagmentAppDbContext>(provider => provider.GetService<OrderManagmentAppDbContext>());
             services.AddTransient<IUnitOfWork, UnitOfWork>();
          
-            var mapperConfig = new MapperConfiguration(mc =>
-            {
-                mc.AddProfile(new MappingConfigration());
-                // mc.AddGlobalIgnore("CreatedOn");
-                // mc.AddGlobalIgnore("UpdatedOn");
-            });
+            //var mapperConfig = new MapperConfiguration(mc =>
+            //{
+            //    mc.AddProfile(new MappingConfigration());
+            //    // mc.AddGlobalIgnore("CreatedOn");
+            //    // mc.AddGlobalIgnore("UpdatedOn");
+            //});
 
-            IMapper mapper = mapperConfig.CreateMapper();
-            services.AddSingleton(mapper);
+            //IMapper mapper = mapperConfig.CreateMapper();
+            //services.AddSingleton(mapper);
 
             return services;
         }

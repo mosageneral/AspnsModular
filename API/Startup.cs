@@ -37,7 +37,7 @@ namespace API
 
             services.AddAccountModule(Configuration);
             services.AddProductModule(Configuration);
-            services.AddOrderManagmentModule(Configuration);
+           services.AddOrderManagmentModule(Configuration);
 
             services.AddSwaggerGen(config => {
                 config.SwaggerDoc("v1", new OpenApiInfo() { Title = "WebAPI", Version = "v1" });

@@ -18,7 +18,7 @@ namespace Module.Product.DL.appDBContext
 
        
 
-        public ProductAppDbContext(DbContextOptions options) : base(options)
+        public ProductAppDbContext(DbContextOptions<ProductAppDbContext> options) : base(options)
         {
         }
 

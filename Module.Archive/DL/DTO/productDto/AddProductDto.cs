@@ -12,9 +12,7 @@ namespace Module.Product.DL.DTO.productDto
         public string NameAr { get; set; }
         public string NameEn { get; set; }
         public Guid SubCategoryId { get; set; }
-      
         public Guid ModelId { get; set; }
-     
         public int QTY { get; set; }
         public Guid VendorId { get; set; }
         public decimal BuyPriceRetail { get; set; }

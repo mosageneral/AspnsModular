@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 namespace DL.Mapping
 {
 
-    public class MappingConfigration : Profile
+    internal class MappingConfigration : Profile
     {
 
         
