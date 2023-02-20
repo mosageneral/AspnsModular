@@ -1,6 +1,4 @@
-﻿
-
-using AutoMapper;
+﻿using AutoMapper;
 using BL.Infrastructure;
 using DL.Mapping;
 using Microsoft.Extensions.Configuration;
