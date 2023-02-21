@@ -97,24 +97,30 @@ namespace Module.Archive.Controllers
             invoice.TotalCost = invoice.TotalAfterDiscount + invoice.VAT;
 
             unitOfWork.B2CInvoiceRepository.Add(invoice);
-            //unitOfWork.Save();
+            unitOfWork.Save();
 
-            var OrderItems = getOrderItems.GetItems(invoice.OrderId).ToHashSet();
-            //List<InvoiceItemB2C> ItemList = new List<InvoiceItemB2C>();
+            //var OrderItems = getOrderItems.GetItems(invoice.OrderId).ToHashSet();
+            ////List<InvoiceItemB2C> ItemList = new List<InvoiceItemB2C>();
 
-            foreach (var item in OrderItems)
-            {
-                var Additem = new InvoiceItemB2C();
-                Additem.InvoiceId = invoice.Id;
+            //foreach (var item in OrderItems)
+            //{
+            //    var Additem = new InvoiceItemB2C();
+            //    Additem.InvoiceId = invoice.Id;
 
-                Additem.ItemAr = item.GetType().GetProperty("ItemAr").GetValue(item, null).ToString();
+            //    Additem.ItemAr = item.GetType().GetProperty("ItemAr").GetValue(item, null).ToString();
 
 
-                //unitOfWork.B2CInvoiceItemRepository.Add(Additem);
-            }
+            //    //unitOfWork.B2CInvoiceItemRepository.Add(Additem);
+            //}
 
             return Ok(invoice);
 
+        }
+
+        [HttpGet, Route("GetAllB2CInvoice")]
+        public IActionResult GetAllB2CInvoice()
+        {
+            return Ok(unitOfWork.B2CInvoiceRepository.GetAll().ToHashSet());
         }
 
     }
