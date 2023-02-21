@@ -170,7 +170,12 @@ namespace Module.OrderManagment.Controllers
             }
             return Ok(orderDTo);
         }
-       
+        [HttpPost, Route("GetAllOrders")]
+        public IActionResult GetAllOrders()
+        {
+           
+            return Ok(unitOfWork.OrderRepository.GetAll().ToHashSet());
+        }
         #endregion
     }
 }
