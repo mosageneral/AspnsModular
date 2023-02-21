@@ -21,6 +21,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Module.Account\Module.Account.csproj" />
     <ProjectReference Include="..\Module.Archive\Module.Product.csproj" />
+    <ProjectReference Include="..\Module.Financial\Module.Financial.csproj" />
     <ProjectReference Include="..\Module.OrderManagment\Module.OrderManagment.csproj" />
     <ProjectReference Include="..\Shared.Infrastructure\Shared.Infrastructure.csproj" />
   </ItemGroup>

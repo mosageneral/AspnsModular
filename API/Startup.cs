@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Module.Account.API;
+using Module.Financial.API;
 using Module.OrderManagment.API;
 using Module.Product.API;
 using Shared.Infrastructure.Extensions;
@@ -38,6 +39,7 @@ namespace API
             services.AddAccountModule(Configuration);
             services.AddProductModule(Configuration);
            services.AddOrderManagmentModule(Configuration);
+            services.AddFinancialModule(Configuration);
 
             services.AddSwaggerGen(config => {
                 config.SwaggerDoc("v1", new OpenApiInfo() { Title = "WebAPI", Version = "v1" });
