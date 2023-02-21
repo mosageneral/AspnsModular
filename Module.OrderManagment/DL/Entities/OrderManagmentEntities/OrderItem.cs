@@ -16,5 +16,6 @@ namespace Module.OrderManagment.DL.Entities.OrderManagmentEntities
         public string image { get; set; }
         public Guid VendorId { get; set; }
         public string PartNumber { get; set; }
+        public int QTY { get; set; }
     }
 }
