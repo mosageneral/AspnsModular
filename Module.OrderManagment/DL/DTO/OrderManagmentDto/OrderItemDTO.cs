@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Module.OrderManagment.DL.DTO.OrderManagmentDto
 {
-    internal class OrderDTo
+    internal class OrderItemDTO
     {
-        public List<OrderItemDTO> Products { get; set; }
-        public Guid BuyerId { get; set; }
+        public Guid ItemId { get; set; }
+        public int ItemQTY { get; set; }
     }
 }

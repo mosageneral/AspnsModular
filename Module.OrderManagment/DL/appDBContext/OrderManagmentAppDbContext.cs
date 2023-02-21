@@ -23,6 +23,7 @@ namespace Module.OrderManagment.DL.appDBContext
 
 
         public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderItem> orderItems { get; set; }
 
 
 

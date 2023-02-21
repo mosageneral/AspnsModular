@@ -161,20 +161,42 @@ namespace Module.OrderManagment.Controllers
         [HttpPost,Route("Order")]
         public IActionResult Order(OrderDTo orderDTo)
         {
-           List<OrderItem> OrderItems = new List<OrderItem>();
-            foreach (var item in orderDTo.ProductsIds)
+            Order order = new Order { BuyerId = orderDTo.BuyerId, CreatedAt = DateTime.Now };
+            unitOfWork.OrderRepository.Add(order);
+            unitOfWork.Save();
+            foreach (var item in orderDTo.Products)
             {
-                var product =  getProductById.GetProductById(item);
+                OrderItem orderItem = new OrderItem();
+                var product =  getProductById.GetProductById(item.ItemId);
 
-                var name = product.GetType().GetProperty("NameAr").GetValue(product, null);
+                orderItem.NameAr = product.GetType().GetProperty("NameAr").GetValue(product, null).ToString();
+                orderItem.NameEn = product.GetType().GetProperty("NameEn").GetValue(product, null).ToString();
+                orderItem.PartNumber = product.GetType().GetProperty("PartNumber").GetValue(product, null).ToString();
+                orderItem.image = product.GetType().GetProperty("Image").GetValue(product, null).ToString();
+                orderItem.Price = product.GetType().GetProperty("SellPrice").GetValue(product, null).ToString();
+                orderItem.QTY = item.ItemQTY;
+               
+                orderItem.OrderId = order.Id;
+       
+                unitOfWork.OrderItemRepository.Add(orderItem);
+
+
             }
-            return Ok(orderDTo);
+            unitOfWork.Save();
+
+            return Ok(order);
         }
         [HttpPost, Route("GetAllOrders")]
         public IActionResult GetAllOrders()
         {
            
             return Ok(unitOfWork.OrderRepository.GetAll().ToHashSet());
+        }
+        [HttpPost, Route("GetOrderItemsByOrderID")]
+        public IActionResult GetOrderItemsByOrderID(Guid OrderID)
+        {
+
+            return Ok(unitOfWork.OrderItemRepository.GetMany(a=>a.OrderId==OrderID).ToHashSet());
         }
         #endregion
     }
