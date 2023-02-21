@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Module.Financial.DL.DTO.FinancialEntitiesDTO;
 using Module.Financial.DL.Entities.FinancialEntities;
 using Shared.Infrastructure.Extensions;
+using Shared.Models.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,14 +24,15 @@ namespace Module.Archive.Controllers
   //  [ClaimRequirement(ClaimTypes.Role, PermissionsConst.Archive)]
     internal class InvoiceController : ControllerBase
     {
+        private readonly IGetOrderItems getOrderItems;
         private readonly IUnitOfWork unitOfWork;
 
         private readonly IMapper Mapper;
         private readonly IHostingEnvironment hostingEnvironment;
 
-        public InvoiceController( IUnitOfWork unitOfWork, IMapper mapper, IHostingEnvironment _hostingEnvironment)
+        public InvoiceController( IGetOrderItems getOrderItems , IUnitOfWork unitOfWork, IMapper mapper, IHostingEnvironment _hostingEnvironment)
         {
-          
+            this.getOrderItems = getOrderItems;
             this.unitOfWork = unitOfWork;
             Mapper = mapper;
             hostingEnvironment = _hostingEnvironment;
@@ -62,24 +64,9 @@ namespace Module.Archive.Controllers
 
             unitOfWork.B2BInvoiceRepository.Add(invoice);
             unitOfWork.Save();
+           
 
-            //var OrderServices = _uow.RepairOrderServicesRepository.GetMany(a => a.OrderId == invoice.RepairOrderId).ToHashSet();
-            //List<InvoiceItem> ItemList = new List<InvoiceItem>();
-
-            //foreach (var item in OrderServices)
-            //{
-            //    var Additem = new InvoiceItem();
-            //    Additem.PeacePrice = item.Price;
-            //    Additem.FixPrice = item.Price;
-            //    Additem.InvoiceId = CurrentInvoice.Id;
-            //    Additem.SparePartNameAr = item.Name;
-            //    Additem.Quantity = 1;
-
-            //    Additem.Garuntee = "";
-            //    Additem.CreatedOn = DateTime.Now;
-
-            //    _uow.InvoiceItemRepository.Add(Additem);
-            //}
+           
             return Ok(invoice);
 
         }
@@ -110,25 +97,22 @@ namespace Module.Archive.Controllers
             invoice.TotalCost = invoice.TotalAfterDiscount + invoice.VAT;
 
             unitOfWork.B2CInvoiceRepository.Add(invoice);
-            unitOfWork.Save();
+            //unitOfWork.Save();
 
-            //var OrderServices = _uow.RepairOrderServicesRepository.GetMany(a => a.OrderId == invoice.RepairOrderId).ToHashSet();
-            //List<InvoiceItem> ItemList = new List<InvoiceItem>();
+            var OrderItems = getOrderItems.GetItems(invoice.OrderId).ToHashSet();
+            //List<InvoiceItemB2C> ItemList = new List<InvoiceItemB2C>();
 
-            //foreach (var item in OrderServices)
-            //{
-            //    var Additem = new InvoiceItem();
-            //    Additem.PeacePrice = item.Price;
-            //    Additem.FixPrice = item.Price;
-            //    Additem.InvoiceId = CurrentInvoice.Id;
-            //    Additem.SparePartNameAr = item.Name;
-            //    Additem.Quantity = 1;
+            foreach (var item in OrderItems)
+            {
+                var Additem = new InvoiceItemB2C();
+                Additem.InvoiceId = invoice.Id;
 
-            //    Additem.Garuntee = "";
-            //    Additem.CreatedOn = DateTime.Now;
+                Additem.ItemAr = item.GetType().GetProperty("ItemAr").GetValue(item, null).ToString();
 
-            //    _uow.InvoiceItemRepository.Add(Additem);
-            //}
+
+                //unitOfWork.B2CInvoiceItemRepository.Add(Additem);
+            }
+
             return Ok(invoice);
 
         }
