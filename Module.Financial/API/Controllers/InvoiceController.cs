@@ -70,8 +70,13 @@ namespace Module.Archive.Controllers
             return Ok(invoice);
 
         }
+         
 
 
+        #region B2CInvoice
+
+       
+        // Create B2C Invoice  
         [HttpPost, Route("CreateB2CInvoice")]
         public IActionResult CreateB2CInvoice(InvoiceB2CDTO invoiceB2CDTO)
         {
@@ -89,39 +94,86 @@ namespace Module.Archive.Controllers
                 invoice.InvoiceNumber = lastnumber + 1;
             }
 
-            invoice.InvoiceSerial = "IN-" + "ASPNS" + "-" + invoice.InvoiceNumber;
+            invoice.InvoiceSerial = "IN-"  + invoice.InvoiceNumber;
 
+            // get items to calculate priceparts
+            var OrderItems = getOrderItems.GetItems(invoice.OrderId).ToHashSet();
+            decimal TotalPrice = 0;
+          
+            if (OrderItems != null)
+            {
+                foreach (var item in OrderItems)
+                {
+
+                    var Qty = (int)item.GetType().GetProperty("QTY").GetValue(item, null);
+                    var PeacePrice = item.GetType().GetProperty("Price").GetValue(item, null).ToString();
+                    decimal pricepart = System.Convert.ToDecimal(PeacePrice);
+                    var Cost = Qty * pricepart;
+                    TotalPrice += Cost;
+                }
+
+            }
+            invoice.PriceParts = TotalPrice;
+
+            var PercentVat = 15;
+            var vat = (decimal)PercentVat / 100;
             invoice.TotalBeforeDiscount = invoice.PriceParts + invoice.DeliveryCost;
             invoice.TotalAfterDiscount = invoice.TotalBeforeDiscount - invoice.Discount;
-            invoice.VAT = invoice.TotalAfterDiscount * (15 / 100);
+            invoice.VAT = invoice.TotalAfterDiscount * vat;
             invoice.TotalCost = invoice.TotalAfterDiscount + invoice.VAT;
 
             unitOfWork.B2CInvoiceRepository.Add(invoice);
             unitOfWork.Save();
 
-            //var OrderItems = getOrderItems.GetItems(invoice.OrderId).ToHashSet();
-            ////List<InvoiceItemB2C> ItemList = new List<InvoiceItemB2C>();
+            
+            
 
-            //foreach (var item in OrderItems)
-            //{
-            //    var Additem = new InvoiceItemB2C();
-            //    Additem.InvoiceId = invoice.Id;
+            foreach (var item in OrderItems)
+            {
+                var Additem = new InvoiceItemB2C();
+                Additem.InvoiceId = invoice.Id;
 
-            //    Additem.ItemAr = item.GetType().GetProperty("ItemAr").GetValue(item, null).ToString();
+                Additem.ItemAr = item.GetType().GetProperty("NameAr").GetValue(item, null).ToString();
+                Additem.ItemEn = item.GetType().GetProperty("NameEn").GetValue(item, null).ToString();
+                Additem.Quantity = (int)item.GetType().GetProperty("QTY").GetValue(item, null);
+                var PeacePrice = item.GetType().GetProperty("Price").GetValue(item, null).ToString();
+                Additem.PricePerPart = System.Convert.ToDecimal(PeacePrice);
+                Additem.TotalPrice = Additem.Quantity * Additem.PricePerPart;
 
+                unitOfWork.B2CInvoiceItemRepository.Add(Additem);
+                unitOfWork.Save();     
+            }
+            var invoiceitem = unitOfWork.B2CInvoiceItemRepository.GetMany(a => a.InvoiceId == invoice.Id);
 
-            //    //unitOfWork.B2CInvoiceItemRepository.Add(Additem);
-            //}
-
-            return Ok(invoice);
+            return Ok(new { Invoice = invoice , invoiceItem = invoiceitem });
 
         }
 
+
+        // Get all B2C Invoices
         [HttpGet, Route("GetAllB2CInvoice")]
         public IActionResult GetAllB2CInvoice()
         {
             return Ok(unitOfWork.B2CInvoiceRepository.GetAll().ToHashSet());
         }
 
+
+        // Get  B2C Invoices By InvoiceId
+        [HttpGet, Route("GetB2CInvoiceByInvoiceId")]
+        public IActionResult GetB2CInvoiceByInvoiceId(Guid invoiceid)
+        {
+            return Ok(unitOfWork.B2CInvoiceRepository.GetById(invoiceid));
+        }
+
+        // Get  B2C Invoices By buyerid
+        [HttpGet, Route("GetB2CInvoiceByBuyerId")]
+        public IActionResult GetB2CInvoiceByBuyerId(Guid buyerid)
+        {
+            return Ok(unitOfWork.B2CInvoiceRepository.GetMany(a=>a.BuyerId == buyerid).ToHashSet());
+        }
+
+
+
+        #endregion
     }
 }
