@@ -1,6 +1,4 @@
-﻿
-
-using AutoMapper;
+﻿using AutoMapper;
 using BL.Infrastructure;
 using DL.Mapping;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -52,15 +50,9 @@ namespace Module.Account.API
                 };
 
             });
-            var mapperConfig = new MapperConfiguration(mc =>
-            {
-                mc.AddProfile(new MappingConfigration());
-                // mc.AddGlobalIgnore("CreatedOn");
-                // mc.AddGlobalIgnore("UpdatedOn");
-            });
-
-            IMapper mapper = mapperConfig.CreateMapper();
-            services.AddSingleton(mapper);
+ 
+          
+            
             services.AddScoped<IUserManagementService, UserManagementService>();
 
             services.AddScoped<IAuthenticateService, TokenAuthenticationService>();

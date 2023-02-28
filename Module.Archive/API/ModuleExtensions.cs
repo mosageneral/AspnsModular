@@ -22,15 +22,8 @@ namespace Module.Product.API
                 .AddScoped<IProductAppDbContext>(provider => provider.GetService<ProductAppDbContext>());
             services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddTransient<IGetProductById, GetProductById>();
-            var mapperConfig = new MapperConfiguration(mc =>
-            {
-                mc.AddProfile(new MappingConfigration());
-                // mc.AddGlobalIgnore("CreatedOn");
-                // mc.AddGlobalIgnore("UpdatedOn");
-            });
 
-            IMapper mapper = mapperConfig.CreateMapper();
-            services.AddSingleton(mapper);
+          
 
             return services;
         }

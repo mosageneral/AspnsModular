@@ -21,15 +21,7 @@ namespace Module.OrderManagment.API
             services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddTransient<IGetOrderItems, GetOrderItems>();
 
-            //var mapperConfig = new MapperConfiguration(mc =>
-            //{
-            //    mc.AddProfile(new MappingConfigration());
-            //    // mc.AddGlobalIgnore("CreatedOn");
-            //    // mc.AddGlobalIgnore("UpdatedOn");
-            //});
-
-            //IMapper mapper = mapperConfig.CreateMapper();
-            //services.AddSingleton(mapper);
+          
 
             return services;
         }

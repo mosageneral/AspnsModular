@@ -22,15 +22,7 @@ namespace Module.Financial.API
                 .AddDatabaseContext<FinancialAppDbContext>(configuration)
                 .AddScoped<IFinancialAppDbContext>(provider => provider.GetService<FinancialAppDbContext>());
             services.AddTransient<IUnitOfWork, UnitOfWork>();
-            var mapperConfig = new MapperConfiguration(mc =>
-            {
-                mc.AddProfile(new MappingConfigration());
-                // mc.AddGlobalIgnore("CreatedOn");
-                // mc.AddGlobalIgnore("UpdatedOn");
-            });
-
-            IMapper mapper = mapperConfig.CreateMapper();
-            services.AddSingleton(mapper);
+           
 
             return services;
         }
