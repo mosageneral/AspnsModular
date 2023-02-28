@@ -31,6 +31,9 @@ namespace Module.Financial.DL.Entities.FinancialEntities
 
         public decimal PriceParts { get; set; }
 
+        public decimal DeliverySubTWare { get; set; }
+        public decimal OverHead { get; set; }
+
         public decimal DeliveryCost { get; set; }
 
         public decimal TotalBeforeDiscount { get; set; }
