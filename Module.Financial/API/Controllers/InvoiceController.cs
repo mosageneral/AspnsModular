@@ -117,10 +117,10 @@ namespace Module.Archive.Controllers
 
             var PercentVat = 15;
             var vat = (decimal)PercentVat / 100;
-            invoice.TotalBeforeDiscount = invoice.PriceParts + invoice.DeliveryCost;
+            invoice.TotalBeforeDiscount = invoice.PriceParts + invoice.DeliveryCost + invoice.OverHead + invoice.DeliverySubTWare;
             invoice.TotalAfterDiscount = invoice.TotalBeforeDiscount - invoice.Discount;
             invoice.VAT = invoice.TotalAfterDiscount * vat;
-            invoice.TotalCost = invoice.TotalAfterDiscount + invoice.VAT;
+            invoice.TotalCost = invoice.TotalAfterDiscount + invoice.VAT ;
 
             unitOfWork.B2CInvoiceRepository.Add(invoice);
             unitOfWork.Save();
