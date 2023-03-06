@@ -28,32 +28,36 @@ namespace Module.Account.Controllers
     {
         private readonly IUnitOfWork unitOfWork;
         private readonly IAuthenticateService authenticateService;
-        private readonly Mapper mapper;
+        private readonly IMapper _mapper;
 
-        public CountryController(IUnitOfWork unitOfWork,IAuthenticateService authenticateService,Mapper Mapper)
+        public CountryController(IUnitOfWork unitOfWork,IAuthenticateService authenticateService,IMapper mapper)
         {
             this.unitOfWork = unitOfWork;
             this.authenticateService = authenticateService;
-            mapper = Mapper;
+            _mapper = mapper;
         }
         #region Add
         [HttpPost,Route("AddCountry")]
-        public IActionResult AddCountry(Country country)
+        public IActionResult AddCountry(AddCountryDTO countrydto)
         {
+            var country = _mapper.Map<Country>(countrydto);
             unitOfWork.CountryRepository.Add(country);
             unitOfWork.Save();
             return Ok(country);
         }
         [HttpPost, Route("AddCity")]
-        public IActionResult AddCity(City city)
+        public IActionResult AddCity(AddCityDTO citydto)
         {
+            var city = _mapper.Map<City>(citydto);
             unitOfWork.CityRepository.Add(city);
             unitOfWork.Save();
             return Ok(city);
         }
         [HttpPost, Route("AddRegion")]
-        public IActionResult AddRegion(Region region)
+        public IActionResult AddRegion(AddRegionDTO regiondto)
         {
+            var region = _mapper.Map<Region>(regiondto);
+
             unitOfWork.RegionRepository.Add(region);
             unitOfWork.Save();
             return Ok(region);

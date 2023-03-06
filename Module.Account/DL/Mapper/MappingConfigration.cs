@@ -13,15 +13,18 @@ using System.Threading.Tasks;
 namespace DL.Mapping
 {
 
-    internal class MappingConfigration : Profile
+    public class AccountMappingConfigration : Profile
     {
 
-        
-        public MappingConfigration()
+
+        public AccountMappingConfigration()
         {
             // Add as many of these lines as you need to map your objects
            CreateMap<User, AddUserDTO>(MemberList.Source).ReverseMap();
-         
+           CreateMap<Country, AddCountryDTO>(MemberList.Source).ReverseMap();
+           CreateMap<Region, AddRegionDTO>(MemberList.Source).ReverseMap();
+           CreateMap<City, AddCityDTO>(MemberList.Source).ReverseMap();
+
 
         }
     }

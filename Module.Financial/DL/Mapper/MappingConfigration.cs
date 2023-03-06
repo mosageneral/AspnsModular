@@ -13,11 +13,11 @@ using System.Threading.Tasks;
 namespace DL.Mapping
 {
 
-    internal class MappingConfigration : Profile
+    public class FinancialMappingConfigration : Profile
     {
 
 
-        public MappingConfigration()
+        public FinancialMappingConfigration()
         {
             // Add as many of these lines as you need to map your objects
             CreateMap<InvoiceB2B, InvoiceB2BDTO>(MemberList.Source).ReverseMap();

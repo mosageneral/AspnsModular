@@ -1,3 +1,5 @@
+using AutoMapper;
+using DL.Mapping;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -38,7 +40,7 @@ namespace API
 
             services.AddAccountModule(Configuration);
             services.AddProductModule(Configuration);
-           services.AddOrderManagmentModule(Configuration);
+            services.AddOrderManagmentModule(Configuration);
             services.AddFinancialModule(Configuration);
 
             services.AddSwaggerGen(config => {
@@ -65,6 +67,18 @@ namespace API
                 }
             });
             });
+            var mapperConfigAccount = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new AccountMappingConfigration());
+                mc.AddProfile(new FinancialMappingConfigration());
+                mc.AddProfile(new OrderManagmentMappingConfigration());
+                mc.AddProfile(new ProductMappingConfigration());
+
+            });
+
+            IMapper mapperAccount = mapperConfigAccount.CreateMapper();
+            services.AddSingleton(mapperAccount);
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
