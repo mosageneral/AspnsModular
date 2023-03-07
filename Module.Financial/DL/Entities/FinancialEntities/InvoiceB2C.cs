@@ -16,7 +16,6 @@ namespace Module.Financial.DL.Entities.FinancialEntities
 
         public Guid BuyerId { get; set; }
 
-
         public string BuyerNameAr { get; set; }
 
         public string BuyerNameEn { get; set; }
@@ -32,6 +31,7 @@ namespace Module.Financial.DL.Entities.FinancialEntities
         public decimal PriceParts { get; set; }
 
         public decimal DeliverySubTWare { get; set; }
+
         public decimal OverHead { get; set; }
 
         public decimal DeliveryCost { get; set; }
