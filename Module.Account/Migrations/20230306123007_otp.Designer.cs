@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Module.Account.DL.appDBContext;
 
 namespace Module.Account.Migrations
 {
     [DbContext(typeof(AccountAppDbContext))]
-    partial class AccountAppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230306123007_otp")]
+    partial class otp
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

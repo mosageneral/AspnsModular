@@ -1,6 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
 using System.Text;
 
 namespace BL.Security
@@ -8,9 +6,6 @@ namespace BL.Security
     public static class EncryptANDDecrypt
     {
         private static readonly string encryptionPassword = "Ent3r your oWn S@lt v@lu# h#r3 Ya Mo3alem";
-       
-
-       
 
         private static readonly byte[] salt = Encoding.ASCII.GetBytes("Ent3r your oWn S@lt v@lu# h#r3 Ya Mo3alem");
 
@@ -26,6 +21,7 @@ namespace BL.Security
             }
             return Convert.ToBase64String(encryptedBytes);
         }
+
         public static string DecryptText(string encryptedText)
         {
             try
@@ -40,7 +36,7 @@ namespace BL.Security
                 }
                 return Encoding.UTF8.GetString(descryptedBytes);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return "#";
             }
@@ -59,6 +55,7 @@ namespace BL.Security
             }
             catch { return new byte[] { }; }
         }
+
         private static RijndaelManaged GetAlgorithm(string encryptionPassword)
         {
             // Create an encryption key from the encryptionPassword and salt.

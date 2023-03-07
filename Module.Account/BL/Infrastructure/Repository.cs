@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Module.Account.DL.appDBContext;
+using System.Linq.Expressions;
 
 namespace BL.Infrastructure
 {
@@ -39,13 +36,11 @@ namespace BL.Infrastructure
             return _set.AsNoTracking();
         }
 
-       
-
         public virtual T GetById(params object[] id)
         {
             var entity = _set.Find(id);
-            if(entity!=null)
-             _ctx.Entry(entity).State = EntityState.Detached;
+            if (entity != null)
+                _ctx.Entry(entity).State = EntityState.Detached;
             return entity;
         }
 
@@ -55,7 +50,6 @@ namespace BL.Infrastructure
             return result;
         }
 
-
         public virtual void Update(T entity)
         {
             _set.Update(entity);
@@ -64,12 +58,6 @@ namespace BL.Infrastructure
         public virtual void NoTracking(T entity)
         {
             _ctx.Entry(entity).State = EntityState.Detached;
-        
-            
         }
-
-       
-
-
     }
 }

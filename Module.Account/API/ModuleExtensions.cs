@@ -1,6 +1,4 @@
-﻿using AutoMapper;
-using BL.Infrastructure;
-using DL.Mapping;
+﻿using BL.Infrastructure;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
@@ -24,6 +22,8 @@ namespace Module.Account.API
                 .AddDatabaseContext<AccountAppDbContext>(configuration)
                 .AddScoped<IAccountAppDbContext>(provider => provider.GetService<AccountAppDbContext>());
             services.AddTransient<IUnitOfWork, UnitOfWork>();
+            services.AddTransient<ISMS, SMS>();
+            services.AddTransient<IVerifyCodeService, VerifyCodeService>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.Configure<VariableConfig>(configuration.GetSection("VariableConfig"));
             var token = configuration.GetSection("VariableConfig").Get<VariableConfig>();
@@ -46,13 +46,9 @@ namespace Module.Account.API
                     ClockSkew = TimeSpan.Zero
                     // ValidIssuer = token.Issuer,
                     // ValidAudience = token.Audience,
-
                 };
-
             });
- 
-          
-            
+
             services.AddScoped<IUserManagementService, UserManagementService>();
 
             services.AddScoped<IAuthenticateService, TokenAuthenticationService>();

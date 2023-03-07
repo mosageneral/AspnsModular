@@ -1,9 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Module.Account.BL.Security
 {
@@ -12,8 +7,17 @@ namespace Module.Account.BL.Security
     {
         [JsonProperty("TokenSecret")]
         public string TokenSecret { get; set; }
-        [JsonProperty("TokenExpire")]
 
+        [JsonProperty("TokenExpire")]
         public double TokenExpire { get; set; }
+
+        [JsonProperty("ProfileId")]
+        public string ProfileId { get; set; }
+
+        [JsonProperty("SenderId")]
+        public string SenderId { get; set; }
+
+        [JsonProperty("Password")]
+        public string Password { get; set; }
     }
 }

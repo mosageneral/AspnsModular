@@ -2,22 +2,19 @@
 using Module.Account.BL.Abstraction;
 using Module.Account.DL.DataSeeds;
 using Module.Account.DL.Entities.UserEntites;
+using Module.Account.DL.Entities.UserEntities;
 using Shared.Infrastructure.Persistence;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Module.Account.DL.appDBContext
 {
-    internal class AccountAppDbContext : ModuleDbContext,IAccountAppDbContext
+    internal class AccountAppDbContext : ModuleDbContext, IAccountAppDbContext
     {
         protected override string Schema => "Account";
 
         public AccountAppDbContext(DbContextOptions<AccountAppDbContext> options) : base(options)
         {
         }
+
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<Permission> Permissions { get; set; }
@@ -27,6 +24,7 @@ namespace Module.Account.DL.appDBContext
         public DbSet<Country> Countries { get; set; }
         public DbSet<Region> Regions { get; set; }
         public DbSet<Vendor> Vendors { get; set; }
+        public DbSet<VerfiyCode> VerfiyCodes { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -39,7 +37,7 @@ namespace Module.Account.DL.appDBContext
             //PermissionSeeds
             modelBuilder.Entity<Permission>().HasData(PermissionSeeds.Archive);
             modelBuilder.Entity<Permission>().HasData(PermissionSeeds.Admin);
-            //UserRolesSeeds 
+            //UserRolesSeeds
             modelBuilder.Entity<UserRoles>().HasData(UserRolesSeeds.UserBasic_RoleBasic);
             modelBuilder.Entity<UserRoles>().HasData(UserRolesSeeds.UserAdmin_RoleBasic);
             modelBuilder.Entity<UserRoles>().HasData(UserRolesSeeds.UserAdmin_RoleAdmin);
@@ -47,7 +45,6 @@ namespace Module.Account.DL.appDBContext
             modelBuilder.Entity<PermissionRoles>().HasData(RolesPermissionSeeds.RoleBasic_PermissionGetAllUser);
             modelBuilder.Entity<PermissionRoles>().HasData(RolesPermissionSeeds.RoleAdmin_PermissionGetAllUser);
             modelBuilder.Entity<PermissionRoles>().HasData(RolesPermissionSeeds.RoleAdmin_PermissionAddUser);
-
 
             base.OnModelCreating(modelBuilder);
         }

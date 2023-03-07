@@ -1,8 +1,6 @@
-﻿
-using BL.Infrastructure;
+﻿using BL.Infrastructure;
 using Module.Account.DL.appDBContext;
 using Module.Account.DL.Entities.UserEntites;
-using System.Collections.Generic;
 
 namespace BL.Repositories
 {
@@ -13,7 +11,5 @@ namespace BL.Repositories
     {
         public PermissionRepository(AccountAppDbContext ctx) : base(ctx)
         { }
-
-       
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace Module.Account.DL.Entities.UserEntites
 {
-    internal class City:BaseDomain
+    internal class City : BaseDomain
     {
         public string NameAr { get; set; }
         public string NameEn { get; set; }

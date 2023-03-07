@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Module.Account.DL.Entities.UserEntites
+﻿namespace Module.Account.DL.Entities.UserEntites
 {
     internal class User : BaseDomain
     {
@@ -13,11 +7,9 @@ namespace Module.Account.DL.Entities.UserEntites
         public string Phone { get; set; }
         public string Password { get; set; }
         public Guid? CityId { get; set; }
-        public City  City { get; set; }
+        public City City { get; set; }
         public string UserType { get; set; }
         public Guid? VendorId { get; set; }
         public Vendor Vendor { get; set; }
-
-
     }
 }

@@ -1,43 +1,32 @@
 ﻿using AutoMapper;
 using BL.Infrastructure;
-using BL.Security;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Module.Account.BL.Security;
 using Module.Account.DL.DTO;
 using Module.Account.DL.Entities.UserEntites;
-using Shared.Infrastructure.Extensions;
-using Shared.Models.Constant;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Module.Account.Controllers
 {
     [EnableCors("MyPolicy")]
     [ApiController]
     [Route("/api/Account/[controller]")]
-  //  [ClaimRequirement(ClaimTypes.Role, PermissionsConst.Admin)]
-
-    internal class CountryController:ControllerBase
+    internal class CountryController : ControllerBase
     {
         private readonly IUnitOfWork unitOfWork;
         private readonly IAuthenticateService authenticateService;
         private readonly IMapper _mapper;
 
-        public CountryController(IUnitOfWork unitOfWork,IAuthenticateService authenticateService,IMapper mapper)
+        public CountryController(IUnitOfWork unitOfWork, IAuthenticateService authenticateService, IMapper mapper)
         {
             this.unitOfWork = unitOfWork;
             this.authenticateService = authenticateService;
             _mapper = mapper;
         }
+
         #region Add
-        [HttpPost,Route("AddCountry")]
+
+        [HttpPost, Route("AddCountry")]
         public IActionResult AddCountry(AddCountryDTO countrydto)
         {
             var country = _mapper.Map<Country>(countrydto);
@@ -45,6 +34,7 @@ namespace Module.Account.Controllers
             unitOfWork.Save();
             return Ok(country);
         }
+
         [HttpPost, Route("AddCity")]
         public IActionResult AddCity(AddCityDTO citydto)
         {
@@ -53,6 +43,7 @@ namespace Module.Account.Controllers
             unitOfWork.Save();
             return Ok(city);
         }
+
         [HttpPost, Route("AddRegion")]
         public IActionResult AddRegion(AddRegionDTO regiondto)
         {
@@ -62,30 +53,32 @@ namespace Module.Account.Controllers
             unitOfWork.Save();
             return Ok(region);
         }
-        #endregion
+
+        #endregion Add
 
         #region GetAll
-        [HttpGet,Route("GetAllCountry")]
+
+        [HttpGet, Route("GetAllCountry")]
         public IActionResult GetAllCountry()
         {
-           var Counrty =  unitOfWork.CountryRepository.GetAll().ToHashSet();
+            var Counrty = unitOfWork.CountryRepository.GetAll().ToHashSet();
             return Ok(Counrty);
-
         }
+
         [HttpGet, Route("GetAllRegionByCountryId")]
         public IActionResult GetAllRegionByCountryId(Guid CountryId)
         {
-            var Regions = unitOfWork.RegionRepository.GetMany(a=>a.CountryId==CountryId).ToHashSet();
+            var Regions = unitOfWork.RegionRepository.GetMany(a => a.CountryId == CountryId).ToHashSet();
             return Ok(Regions);
-
         }
+
         [HttpGet, Route("GetAllCityByRegionId")]
         public IActionResult GetAllCityByRegionId(Guid RegionId)
         {
             var Cities = unitOfWork.CityRepository.GetMany(a => a.RegionId == RegionId).ToHashSet();
             return Ok(Cities);
-
         }
-        #endregion
+
+        #endregion GetAll
     }
 }

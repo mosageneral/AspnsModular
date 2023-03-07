@@ -1,4 +1,5 @@
 ﻿using BL.Repositories;
+using Module.Account.BL.Repositories;
 using Module.Account.DL.appDBContext;
 
 namespace BL.Infrastructure
@@ -6,12 +7,12 @@ namespace BL.Infrastructure
     internal class UnitOfWork : IUnitOfWork
     {
         private AccountAppDbContext _ctx;
+
         public UnitOfWork(AccountAppDbContext ctx)
         {
             _ctx = ctx;
             _ctx.ChangeTracker.LazyLoadingEnabled = true;
         }
-
 
         public UserRepository UserRepository => new UserRepository(_ctx);
         public RoleRepository RoleRepository => new RoleRepository(_ctx);
@@ -23,13 +24,12 @@ namespace BL.Infrastructure
         public RegionRepository RegionRepository => new RegionRepository(_ctx);
         public VendorRepository VendorRepository => new VendorRepository(_ctx);
 
+        public VerfiyCodeRepository VerfiyCodeRepository => new VerfiyCodeRepository(_ctx);
 
         public void Dispose()
         {
             _ctx.Dispose();
         }
-
-
 
         public int Save()
         {

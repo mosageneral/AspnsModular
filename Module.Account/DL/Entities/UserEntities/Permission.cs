@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Module.Account.DL.Entities.UserEntites
+﻿namespace Module.Account.DL.Entities.UserEntites
 {
-    internal class Permission:BaseDomain
+    internal class Permission : BaseDomain
     {
         public string NameAr { get; set; }
         public string NameEn { get; set; }
-
     }
 }

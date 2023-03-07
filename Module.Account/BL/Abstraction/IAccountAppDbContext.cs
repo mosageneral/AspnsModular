@@ -1,10 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Module.Account.DL.Entities.UserEntites;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Module.Account.BL.Abstraction
 {
@@ -18,5 +13,4 @@ namespace Module.Account.BL.Abstraction
 
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
     }
- 
 }
