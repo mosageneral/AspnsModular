@@ -28,7 +28,7 @@ namespace BL.Infrastructure
 
         public ModelRepository ModelRepository => new ModelRepository(_ctx);
 
-        public YearRepository YearRepository => throw new NotImplementedException();
+        public YearRepository YearRepository => new YearRepository(_ctx);
 
         public void Dispose()
         {
