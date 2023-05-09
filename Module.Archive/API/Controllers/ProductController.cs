@@ -83,11 +83,12 @@ namespace Module.Archive.Controllers
             return Ok(Model);
         }
         [HttpPost, Route("AddYear")]
-        public IActionResult AddYear(Year Year)
+        public IActionResult AddYear(YearDTO YearDTO)
         {
-            unitOfWork.YearRepository.Add(Year);
+            var year = Mapper.Map<Product.DL.Entities.ProductEntities.Year>(YearDTO);
+            unitOfWork.YearRepository.Add(year);
             unitOfWork.Save();
-            return Ok(Year);
+            return Ok(year);
         }
         [HttpGet,Route("GetAllMake")]
         public IActionResult GetAllMake()
