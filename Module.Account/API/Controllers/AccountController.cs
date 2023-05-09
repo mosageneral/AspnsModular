@@ -20,6 +20,7 @@ namespace Module.Account.Controllers
         private readonly IAuthenticateService authenticateService;
         private readonly IMapper mapper;
 
+
         public AccountController(IVerifyCodeService verifyCodeService, IUnitOfWork unitOfWork, IAuthenticateService authenticateService, IMapper Mapper)
         {
             this.verifyCodeService = verifyCodeService;
